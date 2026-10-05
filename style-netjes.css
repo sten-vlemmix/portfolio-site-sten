@@ -1,24 +1,108 @@
+/* Mijn kleuren: donkerblauw #0b1822, groen #2a9d8f, goud #c9a227, creme #e8dfc8 */
+
+
+/* Algemeen */
+
+/* rand en ruimte tellen mee in de breedte */
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
 
 body {
     background-color: #0b1822;
     color: #e8dfc8;
     font-family: Arial;
     margin: 0;
-
     padding-top: 100px;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* letters worden kleiner op een klein scherm */
+h1 {
+    font-size: clamp(32px, 5vw + 16px, 60px);
+}
+
+h1 span {
+    color: #2a9d8f;
+    display: inline-block;
+    animation: knipper 2s ease-in-out infinite;
+}
+
+h2 {
+    color: #c9a227;
+    font-size: clamp(22px, 3vw + 14px, 30px);
+}
+
+h3 {
+    color: #e8dfc8;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+section {
+    scroll-margin-top: 120px;
+}
+
+/* Sten knippert */
+@keyframes knipper {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* tekst schuift omhoog in beeld */
+@keyframes omhoog {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Menu */
 
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    box-sizing: border-box;
     z-index: 1000;
     background-color: #132936;
-
     border-bottom: 2px solid #c9a227;
-
     border-radius: 0 0 15px 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     padding: 16px 50px;
@@ -30,7 +114,7 @@ header {
 .logo {
     font-size: 32px;
     font-weight: bold;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
 }
 
 .logo:hover {
@@ -39,7 +123,7 @@ header {
 
 .logo span {
     color: #2a9d8f;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
 
 .logo:hover span {
@@ -48,7 +132,6 @@ header {
 
 nav {
     display: flex;
-
 }
 
 nav a {
@@ -59,21 +142,21 @@ nav a {
     position: relative;
     padding: 8px 14px;
     border-radius: 8px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: 0.3s;
 }
 
+/* streepje onder de link */
 nav a::after {
     content: "";
     position: absolute;
     left: 14px;
     right: 14px;
     bottom: 4px;
-    width: auto;
     height: 2px;
     background-color: #2a9d8f;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
 }
 
 nav a:hover {
@@ -94,54 +177,60 @@ nav a:hover::after {
     font-weight: bold;
     border-radius: 20px;
     display: inline-block;
-
     box-shadow: 0 4px 10px rgba(201, 162, 39, 0.4);
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: 0.3s;
 }
 
 .download:hover {
     background-color: #2a9d8f;
     color: white;
     transform: translateY(-3px);
-
     box-shadow: 0 8px 20px rgba(42, 157, 143, 0.5);
 }
 
-section {
-    scroll-margin-top: 120px;
+/* deze knop alleen op telefoon */
+.download-menu {
+    display: none;
 }
 
-.hero {
-    margin-top: 40px;
-    margin-left: 100px;
-    display: flex;
+/* vinkje verstoppen */
+#menu-knop {
+    display: none;
+}
+
+/* menu knop voor telefoon */
+.hamburger {
+    display: none;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    font-size: 26px;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    cursor: pointer;
+    line-height: 1;
     align-items: center;
+    justify-content: center;
 }
 
-.text {
-
-    width: 600px;
+/* menu dicht */
+.hamburger::before {
+    content: "☰";
 }
 
-h1 {
-    font-size: 60px;
+/* menu open */
+#menu-knop:checked + .hamburger::before {
+    content: "✕";
 }
 
-h1 span {
-    color: #2a9d8f;
-    display: inline-block;
-    animation: pulse 2s ease-in-out infinite;
+.hamburger:hover {
+    background-color: #c9a227;
+    color: #0b1822;
 }
 
-h2 {
-    color: #c9a227;
-    font-size: 30px;
-}
 
-p {
-    font-size: 18px;
-    line-height: 1.5;
-}
+/* Knoppen */
 
 .knop {
     background-color: #2a9d8f;
@@ -150,7 +239,7 @@ p {
     text-decoration: none;
     display: inline-block;
     margin-top: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: 0.3s;
 }
 
 .knop:hover {
@@ -167,54 +256,98 @@ p {
     text-decoration: none;
     display: inline-block;
     margin-left: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    transition: 0.3s;
 }
 
 .knop2:hover {
     background-color: #c9a227;
     color: #0b1822;
     transform: translateY(-3px);
-    border-color: #c9a227;
+}
+
+
+/* Bovenste stuk */
+
+.hero {
+    margin-top: 40px;
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    width: 600px;
+    animation: omhoog 0.8s ease both;
+}
+
+.hero-knoppen {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hero-knoppen .knop,
+.hero-knoppen .knop2 {
+    margin-top: 20px;
+    margin-left: 0;
 }
 
 .image {
     margin-left: 100px;
+    animation: omhoog 1s ease 0.2s both;
 }
 
-.image img {
+.image img,
+.image .logo-animatie {
     width: 500px;
     height: 500px;
     object-fit: contain;
-    transition: transform 0.5s ease;
+    transition: 0.5s;
 }
 
-.image img:hover {
+.image img:hover,
+.image .logo-animatie:hover {
     transform: scale(1.05) rotate(2deg);
 }
 
+/* AI: rand van het logo rond laten vervagen */
+.image .logo-animatie {
+    display: block;
+    border: 0;
+    aspect-ratio: 1 / 1;
+    background: #0b1822;
+    mask-image: radial-gradient(circle closest-side, #000 90%, transparent 100%);
+}
+
+
+/* About me */
+
 .about {
     margin-top: 200px;
-
     padding: 100px;
-
     display: flex;
     align-items: center;
 }
 
 .about-image {
-    position: relative;
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    transition: transform 0.4s ease;
-    /* Ruimte boven de blob zodat je eruit kunt "scheuren" */
-    padding-top: 90px;
-    overflow: visible;
 }
 
-.about-image img {
-    width: 500px;
+.laptop-afbeelding {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+
+.about-laptop:hover .laptop-afbeelding {
+    transform: scale(1.03);
 }
 
 .about-text {
@@ -230,18 +363,11 @@ p {
     width: 500px;
 }
 
-h3 {
-    color: #e8dfc8;
-    font-size: 18px;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
-
+/* balkjes */
 .balk {
     width: 500px;
     height: 15px;
     background-color: #e8dfc8;
-
     border-radius: 10px;
 }
 
@@ -259,7 +385,7 @@ h3 {
     width: 79%;
 }
 
-.d3{
+.d3 {
     width: 93%;
 }
 
@@ -267,33 +393,8 @@ h3 {
     width: 82%;
 }
 
-.image svg {
-    width: 500px;
-    height: 560px;
-}
 
-/* About-foto: 1 kant-en-klare afbeelding (jij uit de groene vorm) */
-.about-laptop {
-    padding-top: 0;
-    overflow: visible;
-}
-
-.laptop-afbeelding {
-    width: 100% !important;
-    max-width: 420px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    position: static;
-    transform: none;
-    border-radius: 0;
-    filter: none;
-    transition: transform 0.5s ease;
-}
-
-.about-laptop:hover .laptop-afbeelding {
-    transform: scale(1.03);
-}
+/* Mijn kwaliteiten */
 
 .services {
     padding: 100px;
@@ -324,14 +425,13 @@ h3 {
     min-height: 220px;
     padding: 25px 20px;
     text-align: left;
-    transition: transform 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
-
     cursor: pointer;
+    transition: 0.4s;
 }
 
 .service-card:hover {
     transform: translateY(-10px) scale(1.03);
-    background-color: #ffffff;
+    background-color: white;
     box-shadow: 0 15px 35px rgba(42, 157, 143, 0.35);
 }
 
@@ -341,7 +441,7 @@ h3 {
     font-weight: bold;
     margin-bottom: 35px;
     display: inline-block;
-    transition: transform 0.4s ease, color 0.4s ease;
+    transition: 0.4s;
 }
 
 .service-card:hover .service-icon {
@@ -360,46 +460,12 @@ h3 {
     margin: 0;
 }
 
-.about-image svg {
-    transition: transform 0.5s ease;
-}
 
-.about-image:hover svg {
-    transform: scale(1.03) rotate(1deg);
-}
-
-.sten-afbeelding:hover {
-    transform: scale(1.04);
-}
-
-/* Oude sten-foto regels: niet meer in gebruik (nu laptop.png), bewaard voor het geval je terug wilt */
-.sten-figuur {
-    display: none;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero .text {
-    animation: fadeInUp 0.8s ease both;
-}
-
-.hero .image {
-    animation: fadeInUp 1s ease 0.2s both;
-}
+/* Projecten */
 
 .projects-section {
     padding: 100px 8% 110px;
     text-align: center;
-    background-color: #0B1822;
     border-top: 1px solid #2a3a45;
 }
 
@@ -425,7 +491,7 @@ h3 {
 }
 
 .projects-text {
-    color: #9EAAA9;
+    color: #9eaaa9;
     font-size: 16px;
     max-width: 620px;
     margin: 0 auto 40px;
@@ -441,24 +507,26 @@ h3 {
     margin: auto;
 }
 
+/* pijltjes */
 .slider-arrow {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 1px solid #5a6a72;
-    background-color: #0B1822;
-    color: #E8DFC8;
+    background-color: #0b1822;
+    color: #e8dfc8;
     font-size: 20px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .slider-arrow:hover {
-    background-color: #2A9D8F;
-    border-color: #2A9D8F;
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
     color: white;
 }
 
+/* rij met kaarten */
 .project-track {
     display: flex;
     gap: 28px;
@@ -469,7 +537,6 @@ h3 {
 
 .project-card {
     width: 320px;
-
     flex-shrink: 0;
     background-color: #132733;
     border: 1px solid #2a3a45;
@@ -481,8 +548,16 @@ h3 {
 
 .project-card:hover {
     transform: translateY(-10px);
-    border-color: #2A9D8F;
+    border-color: #2a9d8f;
     box-shadow: 0 18px 40px black;
+}
+
+.project-featured {
+    border-color: #c9a227;
+}
+
+.project-empty {
+    opacity: 0.75;
 }
 
 .project-img {
@@ -503,6 +578,17 @@ h3 {
     transform: scale(1.08);
 }
 
+.project-img-empty {
+    background-color: #162e3b;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.empty-plus {
+    font-size: 60px;
+    color: #5a6a72;
+}
+
 .project-badge {
     position: absolute;
     top: 14px;
@@ -515,14 +601,14 @@ h3 {
     border-radius: 20px;
 }
 
+/* knop over de foto */
 .project-overlay {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
     top: 0;
+    bottom: 0;
     background-color: rgba(11, 24, 34, 0.7);
-
     text-align: center;
     padding-top: 150px;
     opacity: 0;
@@ -534,7 +620,7 @@ h3 {
 }
 
 .project-view {
-    background-color: #2A9D8F;
+    background-color: #2a9d8f;
     color: white;
     text-decoration: none;
     font-size: 14px;
@@ -560,7 +646,7 @@ h3 {
 
 .project-info p {
     font-size: 14px;
-    color: #9EAAA9;
+    color: #9eaaa9;
     line-height: 1.5;
     margin: 0 0 14px;
 }
@@ -572,48 +658,17 @@ h3 {
 
 .project-tags span {
     font-size: 12px;
-    color: #E8DFC8;
+    color: #e8dfc8;
     background-color: #1e3442;
     border: 1px solid #2a3a45;
     padding: 5px 11px;
     border-radius: 15px;
 }
 
-.project-empty {
-    opacity: 0.75;
-}
 
-.project-img-empty {
-    background-color: #162e3b;
-    text-align: center;
-    padding-top: 60px;
-}
+/* Popup */
 
-.empty-plus {
-    font-size: 60px;
-    color: #5a6a72;
-}
-
-.project-featured {
-    border-color: #c9a227;
-}
-
-@media (max-width: 800px) {
-    .project-card {
-        width: 100%;
-        max-width: 400px;
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
+/* popup gaat open als je op de link klikt */
 .project-modal {
     position: fixed;
     left: 0;
@@ -627,9 +682,15 @@ h3 {
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s;
+    transition: 0.25s;
 }
 
+.project-modal:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* klik hier en de popup gaat dicht */
 .modal-achtergrond {
     position: absolute;
     left: 0;
@@ -637,12 +698,6 @@ h3 {
     top: 0;
     bottom: 0;
     background-color: rgba(5, 12, 18, 0.7);
-}
-
-/* Zonder JavaScript: popup gaat open als #projectModal in de link staat */
-.project-modal:target {
-    opacity: 1;
-    visibility: visible;
 }
 
 .project-modal-box {
@@ -656,17 +711,50 @@ h3 {
     max-height: 92vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 0;
     color: #e8dfc8;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
     transform: translateY(16px);
     opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: 0.3s;
 }
 
 .project-modal:target .project-modal-box {
     transform: translateY(0);
     opacity: 1;
+}
+
+/* kleur van de scrollbalk */
+.project-modal-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.project-modal-box::-webkit-scrollbar-track {
+    background: #0b1822;
+}
+
+.project-modal-box::-webkit-scrollbar-thumb {
+    background: #2a9d8f;
+    border-radius: 10px;
+}
+
+.project-modal-box h3 {
+    color: white;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+}
+
+.project-modal-box h4 {
+    color: #c9a227;
+    font-size: 17px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+.project-modal-box p {
+    font-size: 15px;
+    color: #9eaaa9;
+    line-height: 1.6;
 }
 
 .modal-banner {
@@ -681,6 +769,29 @@ h3 {
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.project-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+    background-color: #0b1822;
+    color: white;
+    font-size: 15px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.project-modal-close:hover {
+    background-color: #c9a227;
+    color: #0b1822;
 }
 
 .modal-content {
@@ -698,19 +809,13 @@ h3 {
     margin: 0 0 10px;
 }
 
-.project-modal-box h3 {
-    color: white;
-    font-size: 30px;
-    line-height: 1.2;
-    margin: 0 0 8px;
-}
-
 .schuine-tekst {
-    color: #9EAAA9 !important;
+    color: #9eaaa9 !important;
     font-size: 16px !important;
     margin-bottom: 18px !important;
 }
 
+/* status, jaar, techniek */
 .modal-meta {
     display: flex;
     gap: 10px;
@@ -761,29 +866,16 @@ h3 {
     height: 190px;
     object-fit: cover;
     display: block;
-    border: none;
 }
 
 .twee-fotos figcaption {
     font-size: 13px;
-    color: #9EAAA9;
+    color: #9eaaa9;
     padding: 10px 12px;
     text-align: left;
 }
 
-.project-modal-box h4 {
-    color: #c9a227;
-    font-size: 17px;
-    margin-top: 28px;
-    margin-bottom: 10px;
-}
-
-.project-modal-box p {
-    font-size: 15px;
-    color: #9EAAA9;
-    line-height: 1.6;
-}
-
+/* stappen */
 .modal-stappen {
     display: flex;
     flex-direction: column;
@@ -798,7 +890,6 @@ h3 {
     border: 1px solid #2a3a45;
     border-radius: 10px;
     padding: 12px 14px;
-    margin-bottom: 0;
 }
 
 .stap p {
@@ -811,7 +902,7 @@ h3 {
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background-color: #2A9D8F;
+    background-color: #2a9d8f;
     color: white;
     font-weight: bold;
     font-size: 13px;
@@ -820,6 +911,7 @@ h3 {
     justify-content: center;
 }
 
+/* lijstje met vinkjes */
 .leer-lijst {
     list-style: none;
     margin: 0;
@@ -832,7 +924,7 @@ h3 {
 .leer-lijst li {
     background-color: #0b1822;
     border: 1px solid #2a3a45;
-    color: #E8DFC8;
+    color: #e8dfc8;
     font-size: 14px;
     padding: 10px 14px 10px 34px;
     border-radius: 8px;
@@ -845,7 +937,7 @@ h3 {
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #2A9D8F;
+    color: #2a9d8f;
     font-size: 14px;
     font-weight: bold;
 }
@@ -853,100 +945,6 @@ h3 {
 .modal-tags {
     margin-top: 20px;
     flex-wrap: wrap;
-}
-
-/* ---- README uit GitHub in de popup (zelfde stijl als de rest) ---- */
-.readme-blok {
-    background-color: #0b1822;
-    border: 1px solid #2a3a45;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin-top: 18px;
-    margin-bottom: 6px;
-}
-
-.readme-blok h1,
-.readme-blok h2,
-.readme-blok h3,
-.readme-blok h4 {
-    color: #c9a227;
-    margin-top: 16px;
-    margin-bottom: 8px;
-}
-
-.readme-blok h1:first-child,
-.readme-blok h2:first-child {
-    margin-top: 0;
-}
-
-.readme-blok h1 { font-size: 22px; }
-.readme-blok h2 { font-size: 19px; }
-.readme-blok h3 { font-size: 17px; }
-.readme-blok h4 { font-size: 15px; }
-
-.readme-blok p {
-    font-size: 15px;
-    color: #9EAAA9;
-    line-height: 1.6;
-}
-
-.readme-blok a {
-    color: #2A9D8F;
-}
-
-.readme-blok ul,
-.readme-blok ol {
-    color: #9EAAA9;
-    font-size: 15px;
-    line-height: 1.6;
-    padding-left: 22px;
-}
-
-.readme-blok li {
-    margin-bottom: 4px;
-}
-
-.readme-blok img {
-    max-width: 100%;
-    border-radius: 8px;
-    border: 1px solid #2a3a45;
-    margin: 8px 0;
-}
-
-.readme-blok pre {
-    background-color: #132733;
-    border: 1px solid #2a3a45;
-    border-radius: 8px;
-    padding: 12px 14px;
-    overflow-x: auto;
-}
-
-.readme-blok code {
-    color: #E8DFC8;
-    font-size: 13px;
-    font-family: Consolas, monospace;
-}
-
-.readme-blok p code {
-    background-color: #132733;
-    border: 1px solid #2a3a45;
-    border-radius: 5px;
-    padding: 1px 6px;
-}
-
-.readme-laden {
-    color: #5a6a72;
-    font-style: italic;
-}
-
-.readme-fout {
-    background-color: #0b1822;
-    border: 1px solid #c9a227;
-    border-radius: 8px;
-    padding: 12px 14px;
-    color: #E8DFC8;
-    font-size: 14px;
-    line-height: 1.6;
 }
 
 .modal-knoppen {
@@ -965,276 +963,19 @@ h3 {
 }
 
 .modal-btn-ghost {
-    background: transparent;
     border-radius: 12px;
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none;
-    display: inline-block;
     text-align: center;
-    padding: 13px 25px;
 }
 
-.project-modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 3;
-    background-color: #0b1822;
-    color: white;
-    border: none;
-    font-size: 15px;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
 
-.project-modal-close:hover {
-    background-color: #c9a227;
-    color: #0b1822;
-}
-
-.project-modal-box::-webkit-scrollbar {
-    width: 8px;
-}
-
-.project-modal-box::-webkit-scrollbar-track {
-    background: #0b1822;
-}
-
-.project-modal-box::-webkit-scrollbar-thumb {
-    background: #2A9D8F;
-    border-radius: 10px;
-}
-
-@media (max-width: 600px) {
-    .twee-fotos {
-        flex-direction: column;
-    }
-    .twee-fotos img {
-        width: 100%;
-        height: 170px;
-    }
-    .modal-meta {
-        flex-direction: column;
-    }
-    .modal-content {
-        padding: 22px 20px;
-    }
-    .project-modal-box h3 {
-        font-size: 22px;
-    }
-    .modal-banner {
-        height: 200px;
-    }
-}
-
-/* ============ RESPONSIVE: basis-veiligheid ============ */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-}
-
-html, body {
-    overflow-x: hidden;
-}
-
-img, svg {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Voorkom dat lange woorden / links de layout op telefoon breken */
-h1, h2, h3, h4, p, a, li, span {
-    overflow-wrap: break-word;
-}
-
-/* Vloeiende letters: kleiner op telefoon, normaal op desktop */
-h1 {
-    font-size: clamp(32px, 5vw + 16px, 60px);
-}
-
-h2 {
-    font-size: clamp(22px, 3vw + 14px, 30px);
-}
-
-/* Hero-knoppen netjes naast elkaar, met ruimte */
-.hero-knoppen {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.hero-knoppen .knop,
-.hero-knoppen .knop2 {
-    margin-top: 20px;
-    margin-left: 0;
-}
-
-/* Download-knop in het mobiele menu: standaard verborgen op desktop */
-.download-menu {
-    display: none;
-}
-
-/* Dots onder de slider: alleen zichtbaar op telefoon */
-.slider-dots {
-    display: none;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 6px;
-    padding-bottom: 10px;
-}
-
-.slider-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background-color: #33505f;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.slider-dot.actief {
-    background-color: #c9a227;
-    transform: scale(1.25);
-}
-
-/* Hamburger-knop: verborgen op desktop */
-.hamburger {
-    display: none;
-    background-color: #2a9d8f;
-    color: white;
-    border: none;
-    font-size: 26px;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    min-height: 48px;
-    border-radius: 10px;
-    cursor: pointer;
-    line-height: 1;
-    align-items: center;
-    justify-content: center;
-}
-
-.hamburger:hover {
-    background-color: #c9a227;
-    color: #0b1822;
-}
-
-.hamburger:focus-visible,
-header nav a:focus-visible,
-.knop:focus-visible,
-.knop2:focus-visible,
-.project-view:focus-visible,
-.project-modal-close:focus-visible,
-.slider-arrow:focus-visible,
-.slider-dot:focus-visible {
-    outline: 3px solid #c9a227;
-    outline-offset: 2px;
-}
-
-/* ============ RESPONSIVE: tablet (max 1024px) ============ */
-/* Zelfde laptop-layout, alleen compacter. Pas onder 768px schakelen we delen. */
+/* Telefoon en tablet */
 @media (max-width: 1024px) {
-    header {
-        padding: 14px 24px;
-    }
-
-    /* Hero blijft naast elkaar zoals op laptop, maar smaller */
-    .hero {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px 24px;
-        gap: 24px;
-    }
-
-    .text {
-        width: 100%;
-        max-width: 520px;
-    }
-
-    .image {
-        margin-left: 0;
-        flex-shrink: 0;
-    }
-
-    .image img {
-        width: 100%;
-        max-width: 380px;
-        height: auto;
-    }
-
-    /* About blijft naast elkaar zoals op laptop */
-    .about {
-        margin-top: 80px;
-        padding: 40px 24px;
-        gap: 30px;
-    }
-
-    .about-image svg {
-        width: 100%;
-        max-width: 380px;
-        height: auto;
-    }
-
-    /* About-foto laptop.png op tablet */
-    .laptop-afbeelding {
-        max-width: 340px;
-    }
-
-    .sten-figuur {
-        display: none;
-    }
-
-    .sten-afbeelding:hover {
-        transform: scale(1.04);
-    }
-
-    .about-text p {
-        width: 100%;
-        max-width: 440px;
-    }
-
-    .balk {
-        width: 100%;
-        max-width: 440px;
-        margin-left: 0;
-    }
-
-    .services {
-        padding: 60px 24px;
-    }
-
-    .project-track {
-        max-width: 100%;
-    }
-}
-
-/* ============ RESPONSIVE: telefoon (max 768px) ============ */
-/* Eigen professionele mobiele indeling: luchtig, gecentreerd, grote tik-doelen. */
-@media (max-width: 768px) {
     body {
         padding-top: 72px;
     }
 
     header {
         padding: 10px 14px;
-        padding-left: calc(14px + env(safe-area-inset-left));
-        padding-right: calc(14px + env(safe-area-inset-right));
         border-radius: 0 0 14px 14px;
         flex-wrap: wrap;
         gap: 8px;
@@ -1251,11 +992,9 @@ header nav a:focus-visible,
         margin-left: auto;
         width: 46px;
         height: 46px;
-        min-width: 46px;
-        min-height: 46px;
     }
 
-    /* Menu open: nette kaart onder de header */
+    /* menu verstoppen */
     header nav {
         display: none;
         width: 100%;
@@ -1267,11 +1006,11 @@ header nav a:focus-visible,
         border-radius: 12px;
         padding: 10px;
         max-height: calc(100vh - 120px);
-        max-height: calc(100dvh - 120px);
         overflow-y: auto;
     }
 
-    header nav.open {
+    /* menu laten zien */
+    #menu-knop:checked ~ nav {
         display: flex;
     }
 
@@ -1308,12 +1047,10 @@ header nav a:focus-visible,
         line-height: 1.65;
     }
 
-    /* HERO: foto als ronde eyecatcher bovenaan, dan tekst */
+    /* logo boven de tekst */
     .hero {
         margin: 8px auto 0;
         padding: 26px 20px 30px;
-        padding-left: calc(20px + env(safe-area-inset-left));
-        padding-right: calc(20px + env(safe-area-inset-right));
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -1326,7 +1063,8 @@ header nav a:focus-visible,
         margin: 0 0 18px;
     }
 
-    .image img {
+    .image img,
+    .image .logo-animatie {
         width: 172px;
         height: 172px;
         max-width: 172px;
@@ -1370,14 +1108,10 @@ header nav a:focus-visible,
         text-align: center;
     }
 
-    /* ABOUT: afbeelding naast de tekst (ook op telefoon), foto groot */
+    /* about me */
     .about {
         margin: 26px 8px 0;
-        margin-left: calc(8px + env(safe-area-inset-left));
-        margin-right: calc(8px + env(safe-area-inset-right));
         padding: 18px 12px;
-        flex-direction: row;
-        align-items: center;
         text-align: left;
         gap: 12px;
         background-color: #10222e;
@@ -1388,30 +1122,16 @@ header nav a:focus-visible,
     .about-image {
         width: 52%;
         flex-shrink: 0;
-        max-width: none;
     }
 
     .about-text {
         width: 48%;
-        max-width: none;
         min-width: 0;
-    }
-
-    .about-image svg {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        margin: 0;
-        display: block;
     }
 
     .laptop-afbeelding {
         max-width: 100%;
         margin: 0;
-    }
-
-    .sten-figuur {
-        display: none;
     }
 
     .about-text h2 {
@@ -1435,18 +1155,14 @@ header nav a:focus-visible,
     }
 
     .balk {
+        width: 100%;
         max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
         height: 9px;
     }
 
-    /* KWALITEITEN: 1 mooie kaart per rij */
+    /* kaarten onder elkaar */
     .services {
         padding: 44px 20px;
-        padding-left: calc(20px + env(safe-area-inset-left));
-        padding-right: calc(20px + env(safe-area-inset-right));
-        text-align: center;
     }
 
     .services h2 {
@@ -1454,7 +1170,6 @@ header nav a:focus-visible,
     }
 
     .service-cards {
-        display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 14px;
@@ -1464,7 +1179,6 @@ header nav a:focus-visible,
 
     .service-card {
         width: 100%;
-        max-width: none;
         padding: 24px 20px;
         border-radius: 18px;
         text-align: center;
@@ -1479,7 +1193,7 @@ header nav a:focus-visible,
         line-height: 1.6;
     }
 
-    /* PROJECTEN: swipe-kaarten, pijltjes verborgen */
+    /* projecten */
     .projects-section {
         padding: 46px 0 56px;
     }
@@ -1489,28 +1203,22 @@ header nav a:focus-visible,
         padding: 0 20px;
     }
 
-    .projects-section .projects-subtitle {
-        font-size: 15px;
-        padding: 0 20px;
-    }
-
     .project-slider {
         gap: 0;
     }
 
+    /* geen pijltjes */
     .slider-arrow {
         display: none;
     }
 
+    /* kaart stopt in het midden */
     .project-track {
+        max-width: 100%;
         gap: 14px;
         padding: 14px 20px 10px;
-        padding-left: calc(20px + env(safe-area-inset-left));
-        padding-right: calc(20px + env(safe-area-inset-right));
         scroll-snap-type: x mandatory;
         scroll-padding: 0 20px;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-x: contain;
     }
 
     .project-card {
@@ -1536,11 +1244,7 @@ header nav a:focus-visible,
         font-size: 13px;
     }
 
-    .slider-dots {
-        display: flex;
-    }
-
-    /* Hover werkt niet op telefoon: knop altijd tonen */
+    /* knop altijd zien */
     .project-overlay {
         opacity: 1;
         background: linear-gradient(to top, rgba(11, 24, 34, 0.85), transparent 55%);
@@ -1561,21 +1265,26 @@ header nav a:focus-visible,
         border-radius: 12px;
     }
 
-    /* POPUP: alles netjes onder elkaar */
+    /* popup */
     .project-modal {
         padding: 12px;
-        padding-left: calc(12px + env(safe-area-inset-left));
-        padding-right: calc(12px + env(safe-area-inset-right));
     }
 
     .project-modal-box {
         max-height: 88vh;
-        max-height: 88dvh;
         border-radius: 20px;
     }
 
     .modal-content {
         padding: 24px 20px;
+    }
+
+    .project-modal-box h3 {
+        font-size: 22px;
+    }
+
+    .modal-banner {
+        height: 200px;
     }
 
     .modal-knoppen {
@@ -1594,10 +1303,9 @@ header nav a:focus-visible,
 
     .modal-meta {
         flex-direction: column;
-        gap: 10px;
     }
 
-    .modal-meta > div {
+    .modal-meta div {
         min-width: 0;
     }
 
@@ -1612,72 +1320,5 @@ header nav a:focus-visible,
     .twee-fotos img {
         height: auto;
         aspect-ratio: 4 / 3;
-    }
-}
-
-/* ============ RESPONSIVE: kleine telefoons (max 380px) ============ */
-/* Alleen kleiner schalen, layout blijft hetzelfde. */
-@media (max-width: 380px) {
-    .logo {
-        font-size: 20px;
-    }
-
-    .hero {
-        padding: 22px 16px 26px;
-        padding-left: calc(16px + env(safe-area-inset-left));
-        padding-right: calc(16px + env(safe-area-inset-right));
-    }
-
-    .image img {
-        width: 148px;
-        height: 148px;
-        max-width: 148px;
-    }
-
-    .about {
-        padding: 16px 12px;
-        gap: 10px;
-    }
-
-    .about-text h2 {
-        font-size: 20px;
-    }
-
-    .about-text p {
-        font-size: 12px;
-    }
-
-    .service-card {
-        padding: 20px 16px;
-    }
-
-    .project-card {
-        width: 84vw;
-    }
-
-    .project-tags span,
-    .modal-tags span {
-        font-size: 12px;
-        padding: 5px 10px;
-    }
-
-    .modal-content {
-        padding: 18px 14px;
-    }
-
-    .modal-banner {
-        height: 170px;
-    }
-}
-
-/* Minder beweging voor mensen die dat hebben ingesteld */
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
     }
 }

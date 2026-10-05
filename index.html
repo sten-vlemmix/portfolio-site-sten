@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#0b1822">
-    <meta name="description" content="Portfolio van Sten Vlemmix, student software developer. Bekijk mijn projecten en kwaliteiten.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portfolio - Sten Vlemmix</title>
 
     <link rel="stylesheet" href="style-netjes.css">
@@ -13,14 +11,16 @@
 
 <body>
 
+    <!-- menu -->
     <header>
 
-        <div class="logo">
-        TECH<span>-MIX</span></div>
+        <div class="logo">TECH<span>-MIX</span></div>
 
-        <button class="hamburger" id="hamburger" aria-label="Menu openen" aria-expanded="false" aria-controls="hoofdmenu">☰</button>
+        <!-- menu knop voor telefoon -->
+        <input type="checkbox" id="menu-knop">
+        <label for="menu-knop" class="hamburger"></label>
 
-        <nav id="hoofdmenu" aria-label="Hoofdmenu">
+        <nav>
             <a href="#home">Home</a>
             <a href="#ABOUT">About</a>
             <a href="#services">Mijn kwaliteiten</a>
@@ -35,6 +35,7 @@
 
     <main>
 
+        <!-- bovenste stuk -->
         <section class="hero" id="home">
 
             <div class="text">
@@ -61,16 +62,18 @@
 
             <div class="image">
 
-                <img src="logo.png" alt="Logo van Sten Vlemmix" width="500" height="500" fetchpriority="high">
+                <!-- AI: logo animatie -->
+                <iframe src="logo-intro.html" class="logo-animatie" width="500" height="500" scrolling="no"></iframe>
 
             </div>
 
         </section>
 
-         <section class="about" id="ABOUT">
+        <!-- about me -->
+        <section class="about" id="ABOUT">
 
             <div class="about-image about-laptop">
-                <img src="laptop.png" alt="Sten Vlemmix die uit een groene vorm komt" class="laptop-afbeelding" width="960" height="960" loading="lazy">
+                <img src="laptop.png" alt="Sten Vlemmixt" class="laptop-afbeelding">
             </div>
 
             <div class="about-text">
@@ -83,6 +86,7 @@
                     Ik werk netjes en rustig, en ik leg graag duidelijk uit wat ik heb gemaakt.
                 </p>
 
+                <!-- balkjes -->
                 <h3>Python code</h3>
 
                 <div class="balk">
@@ -111,6 +115,7 @@
 
         </section>
 
+        <!-- mijn kwaliteiten -->
         <section class="services" id="services">
 
             <h2>Mijn kwaliteiten</h2>
@@ -148,6 +153,7 @@
 
     </main>
 
+    <!-- projecten -->
     <section class="projects-section" id="projects">
 
         <span class="projects-label">Mijn Werk</span>
@@ -159,37 +165,37 @@
             Van websites tot ontwerpen — elk project heeft me iets nieuws geleerd.
         </p>
 
+        <!-- slider -->
         <div class="project-slider">
 
-            <button class="slider-arrow" id="prevBtn" aria-label="Vorige projecten">❮</button>
+            <button class="slider-arrow" onclick="naarLinks()">❮</button>
 
             <div class="project-track" id="projectTrack">
 
                 <div class="project-card project-featured">
                     <div class="project-img">
-                        <img src="logo.png" alt="Mijn portfolio website" width="640" height="400" loading="lazy">
+                        <img src="logo.png" alt="Mijn portfolio website">
                         <span class="project-badge">Website</span>
                         <div class="project-overlay">
-                            <a href="#portfolioModal" class="project-view" id="openPortfolioModal">Bekijk project →</a>
+                            <a href="#portfolioModal" class="project-view">Bekijk project →</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Mijn Portfolio Website</h3>
-                        <p>Deze website heb ik zelf gemaakt met HTML, CSS en JavaScript. Hier laat ik zien wie ik ben en wat ik kan.</p>
+                        <p>Deze website heb ik zelf gemaakt met HTML en CSS. Hier laat ik zien wie ik ben en wat ik kan.</p>
                         <div class="project-tags">
                             <span>HTML</span>
                             <span>CSS</span>
-                            <span>JavaScript</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card project-featured">
                     <div class="project-img">
-                        <img src="project2.jpeg" alt="Spotify muziekspeler met Raspberry Pi" width="640" height="400" loading="lazy">
+                        <img src="project2.jpeg" alt="Spotify muziekspeler met Raspberry Pi">
                         <span class="project-badge">Raspberry Pi</span>
                         <div class="project-overlay">
-                            <a href="#projectModal" class="project-view" id="openMuziekModal">Bekijk project →</a>
+                            <a href="#projectModal" class="project-view">Bekijk project →</a>
                         </div>
                     </div>
                     <div class="project-info">
@@ -244,38 +250,37 @@
 
             </div>
 
-            <button class="slider-arrow" id="nextBtn" aria-label="Volgende projecten">❯</button>
+            <button class="slider-arrow" onclick="naarRechts()">❯</button>
+
         </div>
 
-        <div class="slider-dots" id="sliderDots" aria-hidden="true"></div>
 
     </section>
 
+    <!-- popup muziekspeler -->
     <div class="project-modal" id="projectModal">
-        <a href="#projects" class="modal-achtergrond" aria-label="Sluiten"></a>
-        <div class="project-modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <a href="#projects" class="modal-achtergrond"></a>
+        <div class="project-modal-box">
 
-            <!-- Bovenste foto als banner -->
+            <!-- foto -->
             <div class="modal-banner">
-                <img src="project2.jpeg" alt="Spotify muziekspeler" width="1200" height="700" loading="lazy">
-                <a href="#projects" class="project-modal-close" aria-label="Sluiten">✕</a>
+                <img src="project2.jpeg" alt="Spotify muziekspeler">
+                <a href="#projects" class="project-modal-close">✕</a>
             </div>
 
             <div class="modal-content">
                 <p class="geel-rondje">Mijn project</p>
 
-                <h3 id="modalTitle">Spotify Muziekspeler voor thuis</h3>
+                <h3>Spotify Muziekspeler voor thuis</h3>
 
                 <p class="schuine-tekst">Muziek luisteren in huis, zonder je telefoon erbij te pakken.</p>
 
-                <!-- Kleine info-rij -->
+                <!-- info -->
                 <div class="modal-meta">
                     <div><b>Status</b><span>Werkend</span></div>
                     <div><b>Jaar</b><span>2025</span></div>
                     <div><b>Techniek</b><span>Raspberry Pi • Python</span></div>
                 </div>
-
-                <!-- Hier stond eerst de README van GitHub, maar het muziekproject is niet gekoppeld aan GitHub. Daarom geen README-blok meer hier. -->
 
                 <h4>Waar gaat dit project over?</h4>
                 <p>Voor dit project heb ik een muziekspeler gemaakt voor thuis. Hij werkt met Spotify en draait op een Raspberry Pi.</p>
@@ -283,11 +288,11 @@
 
                 <div class="twee-fotos">
                     <figure>
-                        <img src="project2.jpeg" alt="Spotify muziekspeler" width="600" height="450" loading="lazy">
+                        <img src="project2.jpeg" alt="Spotify muziekspeler">
                         <figcaption>De speler thuis</figcaption>
                     </figure>
                     <figure>
-                        <img src="project1.png" alt="Nog een foto van het project" width="600" height="450" loading="lazy">
+                        <img src="project1.png" alt="Nog een foto van het project">
                         <figcaption>Scherm / opbouw</figcaption>
                     </figure>
                 </div>
@@ -333,31 +338,30 @@
         </div>
     </div>
 
+    <!-- popup portfolio -->
     <div class="project-modal" id="portfolioModal">
-        <a href="#projects" class="modal-achtergrond" aria-label="Sluiten"></a>
-        <div class="project-modal-box" role="dialog" aria-modal="true" aria-labelledby="portfolioTitle">
+        <a href="#projects" class="modal-achtergrond"></a>
+        <div class="project-modal-box">
 
-            <!-- Bovenste foto als banner -->
+            <!-- foto -->
             <div class="modal-banner">
-                <img src="logo.png" alt="Mijn portfolio website" width="1200" height="700" loading="lazy">
-                <a href="#projects" class="project-modal-close" aria-label="Sluiten">✕</a>
+                <img src="logo.png" alt="Mijn portfolio website">
+                <a href="#projects" class="project-modal-close">✕</a>
             </div>
 
             <div class="modal-content">
                 <p class="geel-rondje">Mijn project</p>
 
-                <h3 id="portfolioTitle">Mijn Portfolio Website</h3>
+                <h3>Mijn Portfolio Website</h3>
 
-                <p class="schuine-tekst">Deze site: mijn portfolio, gemaakt met HTML, CSS en JavaScript.</p>
+                <p class="schuine-tekst">Deze site: mijn portfolio, gemaakt met HTML en CSS.</p>
 
-                <!-- Kleine info-rij -->
+                <!-- info -->
                 <div class="modal-meta">
                     <div><b>Status</b><span>Online</span></div>
-                    <div><b>Jaar</b><span>2025</span></div>
+                    <div><b>Jaar</b><span>2026</span></div>
                     <div><b>Techniek</b><span>HTML • CSS • JS</span></div>
                 </div>
-
-                <!-- README is weggehaald uit de popup, zoals gevraagd. -->
 
                 <h4>Waar gaat dit project over?</h4>
                 <p>Dit is mijn eigen portfolio-website. Hier laat ik zien wie ik ben, wat ik kan en welke projecten ik heb gemaakt.</p>
@@ -375,7 +379,7 @@
                     </div>
                     <div class="stap">
                         <span class="stap-nummer">3</span>
-                        <p><b>Met JavaScript de slider gemaakt</b> en de popups werkend gekregen.</p>
+                        <p><b>Met JavaScript de pijltjes van de slider gemaakt</b> en met CSS de popups.</p>
                     </div>
                     <div class="stap">
                         <span class="stap-nummer">4</span>
@@ -386,23 +390,23 @@
                 <h4>Wat heb ik geleerd?</h4>
                 <ul class="leer-lijst">
                     <li>Werken met HTML en CSS</li>
-                    <li>JavaScript gebruiken voor een slider en popup</li>
+                    <li>Een popup maken met alleen CSS</li>
                     <li>Netjes werken met GitHub</li>
                 </ul>
 
                 <div class="project-tags modal-tags">
                     <span>HTML</span>
                     <span>CSS</span>
-                    <span>JavaScript</span>
                 </div>
 
                 <div class="modal-knoppen">
-                    <a href="https://github.com/DCTerra-Software-Developer/frontend-eindopdracht-stenbot0503" class="knop modal-btn" id="githubKnopPortfolio" target="_blank">Bekijk op GitHub</a>
+                    <a href="https://github.com/DCTerra-Software-Developer/frontend-eindopdracht-stenbot0503" class="knop modal-btn" target="_blank">Bekijk op GitHub</a>
                     <a href="#projects" class="knop2 modal-btn-ghost">Sluiten</a>
                 </div>
             </div>
         </div>
     </div>
+
 
     <script src="script-netjes.js"></script>
 

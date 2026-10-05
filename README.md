@@ -4,7 +4,7 @@
 
 Mijn persoonlijke portfolio website als **Software Developer**.
 
-Op deze website laat ik zien wie ik ben, welke vaardigheden ik heb en aan welke projecten ik werk. De site is volledig zelf opgebouwd met HTML, CSS en JavaScript.
+Op deze website laat ik zien wie ik ben, welke vaardigheden ik heb en aan welke projecten ik werk. De site is volledig zelf opgebouwd met HTML, CSS en een beetje JavaScript.
 
 ## ✨ Wat staat er op de website?
 
@@ -20,7 +20,7 @@ Op deze website laat ik zien wie ik ben, welke vaardigheden ik heb en aan welke 
 
 * **HTML5** – structuur van de website
 * **CSS3** – styling, animaties en responsive design
-* **JavaScript** – interactieve onderdelen
+* **JavaScript** – de pijltjes van de project-slider
 
 ## 🚀 Projecten
 
@@ -39,9 +39,11 @@ De speler is bedoeld om thuis eenvoudig muziek te kunnen luisteren en bedienen.
 
 ```text
 portfolio/
-├── portfolio-netjes.html
+├── index.html
 ├── style-netjes.css
 ├── script-netjes.js
+├── logo-intro.html
+├── laptop.png
 ├── logo.png
 ├── sten5.png
 ├── project1.png
