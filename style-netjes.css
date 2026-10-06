@@ -122,22 +122,6 @@ section {
             animation: jello-horizontal 0.9s both;
 }
 
-/* jello bij hover op de hele site */
-.logo:hover,
-nav a:hover,
-.download:hover,
-.knop:hover,
-.knop2:hover,
-.service-icon:hover,
-.slider-arrow:hover,
-.project-view:hover,
-.project-badge:hover,
-.project-tags span:hover,
-.project-modal-close:hover {
-    -webkit-animation: jello-horizontal 0.9s both;
-            animation: jello-horizontal 0.9s both;
-}
-
 
 /* Menu */
 
